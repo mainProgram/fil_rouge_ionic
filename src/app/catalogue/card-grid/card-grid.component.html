@@ -1,0 +1,23 @@
+<ion-card>
+  <ion-card-content>
+    <ion-row>
+      <ion-col>
+        <img src="{{'data:image/jpg;base64,' + produit.image }}" alt="">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="5">
+        <p>{{ produit.nom}}</p>
+      </ion-col>
+      <ion-col size="5">
+        <p>{{ produit.prix}} FCFA</p>
+      </ion-col>
+      <ion-col>
+        <fa-icon [icon]="['fas', 'cart-plus']"></fa-icon>   
+      </ion-col>
+      <ion-col>
+        <fa-icon [icon]="['fas', 'angle-right']"></fa-icon>     
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>

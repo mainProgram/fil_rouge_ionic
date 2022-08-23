@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { CatalogueService } from '../shared/services/catalogue.service';
+import { ICatalogue } from '../shared/models/interfaces';
+import { Observable } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-catalogue',
@@ -7,9 +12,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CataloguePage implements OnInit {
 
-  constructor() { }
+  public produits : Observable<ICatalogue>
+  public burgers = []
+  public menus = []
+  public myImagePath = "../assets/images/jonathan-borba-8l8Yl2ruUsg-unsplash.jpg";
+
+  constructor(private catalogueService: CatalogueService) { }
 
   ngOnInit() {
+    this.catalogueService.getProduits().subscribe(
+      {
+        next: data => { 
+          this.burgers = data.burgers
+          this.menus = data.menus
+        }
+      }
+    );
   }
 
 }

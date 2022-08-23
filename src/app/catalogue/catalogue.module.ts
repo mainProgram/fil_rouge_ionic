@@ -8,6 +8,11 @@ import { CataloguePageRoutingModule } from './catalogue-routing.module';
 
 import { CataloguePage } from './catalogue.page';
 import { DetailCataloguePageModule } from './detail-catalogue/detail-catalogue.module';
+import { SharedDirectivesModule } from '../shared/directives/shared-directives.module';
+import { CardRowComponent } from './card-row/card-row.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CardGridComponent } from './card-grid/card-grid.component';
+
 
 @NgModule({
   imports: [
@@ -15,9 +20,18 @@ import { DetailCataloguePageModule } from './detail-catalogue/detail-catalogue.m
     FormsModule,
     IonicModule,
     CataloguePageRoutingModule,
-    DetailCataloguePageModule
+    DetailCataloguePageModule,
+    SharedDirectivesModule,
+    FontAwesomeModule
   ],
-  declarations: [CataloguePage],
-  exports: [CataloguePage],
+  declarations: [
+    CataloguePage,
+    CardRowComponent,
+    CardGridComponent
+  ],
+  exports: [CataloguePage,
+    CardRowComponent,
+    CardGridComponent
+  ],
 })
 export class CataloguePageModule {}
