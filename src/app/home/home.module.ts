@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { LoginPageModule } from '../security/login/login.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    LoginPageModule
   ],
   declarations: [HomePage]
 })

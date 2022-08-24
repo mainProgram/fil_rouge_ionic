@@ -1,0 +1,48 @@
+$orange : #E89448;
+
+.fullheight {
+    height: 100%;
+  }
+  
+.xc {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+ion-button{
+    --background: #E89448;
+    --border:none;
+    &:hover{
+        --background: black;
+        --color: white;
+    }   
+}
+
+form{
+    .form_error{
+        font-size: 10px;
+        color:  red;
+    }
+    
+    .orange{
+        color: $orange;
+    }
+
+    a{
+        text-decoration: none;
+        color: $orange;
+        &:hover{
+            color: black;
+        }
+    }
+
+    ion-item{
+        color: #E89448;
+    }
+
+    img{
+        width: 100px;
+        height: 100px;
+    }
+}
