@@ -25,9 +25,7 @@ ion-button{
     color: $orange;
 }
 
-.fixed{
-    position: fixed;
-    width: 100%;
-    background-color: aqua;
-    z-index: 5;
+ion-segment-button{
+    --indicator-color: #E89448;
+    --color-checked: #E89448;
 }

@@ -19,7 +19,7 @@ export class CataloguePage implements OnInit {
     freeMode: true,
     speed : 400,
     slidesPerView: 1.8, //
-    slidesOffsetBefore: 30,
+    slidesOffsetBefore: 40,
     slidesOffsetAfter: 100, //100
   }
   public categories = [
