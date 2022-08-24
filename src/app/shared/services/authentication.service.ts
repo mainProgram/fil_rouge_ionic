@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { ICredential, IToken, IUser } from '../models/interfaces';
+import { IToken, IUser } from '../models/interfaces';
 import { TokenService } from './token.service';
 import { Router } from '@angular/router';
 import { throwError, } from 'rxjs';
@@ -18,7 +18,7 @@ export class AuthenticationService {
 
   public hasRole(role: string){ return this.user.roles.includes(role as never); }
 
-  public login(body : ICredential)
+  public login(body : any)
   {
     return(
       this.http.post<IToken>(environment.LOGIN_URL, body).pipe(
@@ -28,11 +28,15 @@ export class AuthenticationService {
           return throwError(() => new Error("Login et/ou mot de passe incorrect(s)!"))
         })
       )
-    ).subscribe((data) => 
-    {
-      this.tokenService.saveToken(data.token)  ;  
-      this.user = (this.tokenService.getUser(data.token)); 
-      (this.hasRole("ROLE_CLIENT")) ?  this.retour.navigate(["/client/catalogue"]) : this.retour.navigate(["/admin/commandes"])
+    ).subscribe({
+      next: (data) => 
+      {
+        this.tokenService.saveToken(data.token)  ;  
+        this.user = (this.tokenService.getUser(data.token)); 
+        console.log(this.user);
+        (this.hasRole("ROLE_CLIENT")) ?  this.retour.navigate(["/client/catalogue"]) : this.retour.navigate(["/admin/commandes"])
+      },
+      error: (error) => { return error;}
     })
   }
 

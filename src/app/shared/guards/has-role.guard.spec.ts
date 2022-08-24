@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AutoLoginGuard } from './auto-login.guard';
+import { HasRoleGuard } from './has-role.guard';
 
-describe('AutoLoginGuard', () => {
-  let guard: AutoLoginGuard;
+describe('HasRoleGuard', () => {
+  let guard: HasRoleGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(AutoLoginGuard);
+    guard = TestBed.inject(HasRoleGuard);
   });
 
   it('should be created', () => {

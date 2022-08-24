@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +19,35 @@ export class HomePage {
     }
   };
 
-  constructor() {}
+  public erroMessage = ""
+
+  public reactiveForm: FormGroup
+
+  public get f(){  return this.reactiveForm.controls }
+
+  public onSubmit(){  
+    let form = this.reactiveForm.value;
+    console.log(form);
+    // console.log( this.authenticationService.login(form)); 
+  }
+
+  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService) 
+  {
+    this.reactiveForm = this.formBuilder.group(
+      {
+        email: new FormControl('', Validators.compose(
+          [
+            Validators.required,
+            Validators.email
+          ]
+        ),),
+        password: new FormControl('', Validators.compose(
+          [
+            Validators.required, 
+          ]
+        )),
+      }
+    )
+  }
 
 }
