@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { CatalogueService } from '../shared/services/catalogue.service';
-import { ICatalogue } from '../shared/models/interfaces';
+import { CatalogueService } from '../../shared/services/catalogue.service';
+import { ICatalogue } from '../../shared/models/interfaces';
 import { Observable } from 'rxjs';
 import { CardRowComponent } from './card-row/card-row.component';
 import { IonContent } from '@ionic/angular';

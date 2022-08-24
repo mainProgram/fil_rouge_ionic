@@ -12,10 +12,11 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { ClientPipe } from './client.pipe'
 
 @NgModule({
-  declarations: [AppComponent, ClientPipe],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
@@ -23,7 +24,9 @@ import { ClientPipe } from './client.pipe'
     HttpClientModule,
     FontAwesomeModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {

@@ -3,31 +3,31 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'catalogue',
-    loadChildren: () => import('./catalogue/catalogue.module').then( m => m.CataloguePageModule)
-  },
-  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
   },
   {
-    path: 'login',
-    loadChildren: () => import('./security/login/login.module').then( m => m.LoginPageModule)
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'registration',
-    loadChildren: () => import('./security/registration/registration.module').then( m => m.RegistrationPageModule)
+    path: 'client',
+    loadChildren: () => import('./client/client.module').then( m => m.ClientPageModule)
   },
   {
-    path: 'forgot-password',
-    loadChildren: () => import('./security/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+    path: 'security',
+    loadChildren: () => import('./security/security.module').then( m => m.SecurityPageModule)
   },
-  
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({

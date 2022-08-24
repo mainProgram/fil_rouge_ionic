@@ -8,12 +8,10 @@ import { CataloguePageRoutingModule } from './catalogue-routing.module';
 
 import { CataloguePage } from './catalogue.page';
 import { DetailCataloguePageModule } from './detail-catalogue/detail-catalogue.module';
-import { SharedDirectivesModule } from '../shared/directives/shared-directives.module';
+import { SharedDirectivesModule } from '../../shared/directives/shared-directives.module';
 import { CardRowComponent } from './card-row/card-row.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CardGridComponent } from './card-grid/card-grid.component';
-import { MenuComponent } from '../shared/menu/menu.component';
-
 
 @NgModule({
   imports: [
@@ -29,13 +27,11 @@ import { MenuComponent } from '../shared/menu/menu.component';
     CataloguePage,
     CardRowComponent,
     CardGridComponent,
-    MenuComponent
   ],
   exports: [
     CataloguePage,
     CardRowComponent,
     CardGridComponent,
-    MenuComponent
   ],
 })
 export class CataloguePageModule {}
