@@ -1,47 +1,48 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Catalogue</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="client-menu"></ion-menu-button>
+    </ion-buttons> 
   </ion-toolbar>
-</ion-header>
 
-<!-- <ion-content>
-  <h4>Burgers</h4>
-  <ion-card *ngFor="let burger of burgers">
-    <ion-card-content>
-      <img src="{{'data:image/jpg;base64,' + burger.image }}" alt="">
-      <p>{{ burger.nom}}</p>
-    </ion-card-content>
-  </ion-card>
-    
-  <h4>Menus</h4>
-  <ion-card *ngFor="let menu of menus">
-    <ion-card-content>
-      <img src="{{'data:image/jpg;base64,' + menu.image }}" alt="">
-      <p>{{ menu.nom}}</p>
-    </ion-card-content>
-  </ion-card>
-</ion-content> -->
+  <ion-slides [options]="opts">
+    <ion-slide *ngFor="let categorie of categories; let i = index">
+      <ion-button fill="clear" [class.active-category]="activeCategory == i" (click)="selectCategory(i+1)">{{ categorie.name }}</ion-button>
+    </ion-slide>
+  </ion-slides>
+</ion-header>
 
 <ion-content appParallaxHeader [scrollEvents]="true">
   <div class="parallaxImage" [style.background-image] = "'url(' + myImagePath + ')'"></div>
 
   <div class="main">
 
-    <!-- <ion-row>
-      <ion-col>
-        <fa-icon [icon]="['fas', 'fa-grid-2']"></fa-icon>   
-      </ion-col>
-      <ion-col>
-        <fa-icon [icon]="['fas', 'fa-list']"></fa-icon>   
-      </ion-col>
-    </ion-row> -->
+    <ion-toolbar>
+      <ion-segment value="list" (ionChange) = "segmentChange($event)" >
+        <ion-segment-button value="list">
+          <ion-label>
+            <fa-icon [icon]="['fas', 'list']"></fa-icon>   
+          </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="grip">
+          <ion-label>
+            <fa-icon [icon]="['fas', 'grip']"></fa-icon>   
+          </ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
 
-    <ion-text><h4>Burgers</h4></ion-text>
-    <app-card-row
-     *ngFor="let burger of burgers" [produit]="burger"></app-card-row>
+    <section *ngFor="let categorie of categories" id="{{ categorie.id}}">
+      <ion-text><h4>{{ categorie.name }}</h4></ion-text>
+      <ng-container *ngIf="selectedSegment == 'list'">
+        <app-card-row *ngFor="let prod of categorie.produits" [produit]="prod"></app-card-row>
+      </ng-container>
+      <ng-container *ngIf="selectedSegment == 'grip'">
+        <app-card-grid *ngFor="let prod of categorie.produits" [produit]="prod"></app-card-grid>
+      </ng-container>
+    </section>
 
-    <ion-text><h4>Menus</h4></ion-text>
-    <app-card-row *ngFor="let menu of menus" [produit]="menu"></app-card-row>
   </div>
 
 </ion-content>

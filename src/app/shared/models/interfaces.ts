@@ -41,7 +41,11 @@ export interface ICatalogue
 {
     menus: IProduit[],
 
-    burgers: IProduit[]
+    burgers: IProduit[],
+
+    frites?: IProduit[],
+    
+    boissons?: IProduit[]
 }
 
 export interface ICommande

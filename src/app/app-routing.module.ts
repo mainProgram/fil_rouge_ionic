@@ -10,11 +10,23 @@ const routes: Routes = [
     path: 'catalogue',
     loadChildren: () => import('./catalogue/catalogue.module').then( m => m.CataloguePageModule)
   },
-  // {
-  //   path: '',
-  //   redirectTo: 'home',
-  //   pathMatch: 'full'
-  // },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./security/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'registration',
+    loadChildren: () => import('./security/registration/registration.module').then( m => m.RegistrationPageModule)
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./security/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+  },
   
 ];
 

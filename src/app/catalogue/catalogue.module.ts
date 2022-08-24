@@ -12,6 +12,7 @@ import { SharedDirectivesModule } from '../shared/directives/shared-directives.m
 import { CardRowComponent } from './card-row/card-row.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CardGridComponent } from './card-grid/card-grid.component';
+import { MenuComponent } from '../shared/menu/menu.component';
 
 
 @NgModule({
@@ -27,11 +28,14 @@ import { CardGridComponent } from './card-grid/card-grid.component';
   declarations: [
     CataloguePage,
     CardRowComponent,
-    CardGridComponent
+    CardGridComponent,
+    MenuComponent
   ],
-  exports: [CataloguePage,
+  exports: [
+    CataloguePage,
     CardRowComponent,
-    CardGridComponent
+    CardGridComponent,
+    MenuComponent
   ],
 })
 export class CataloguePageModule {}
