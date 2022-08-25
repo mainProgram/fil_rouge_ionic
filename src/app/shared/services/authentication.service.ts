@@ -20,24 +20,7 @@ export class AuthenticationService {
 
   public login(body : any)
   {
-    return(
-      this.http.post<IToken>(environment.LOGIN_URL, body).pipe(
-        catchError( error => {            
-          if(error.status == 401)
-            console.log("Login et/ou mot de passe incorrect(s)!")
-          return throwError(() => new Error("Login et/ou mot de passe incorrect(s)!"))
-        })
-      )
-    ).subscribe({
-      next: (data) => 
-      {
-        this.tokenService.saveToken(data.token)  ;  
-        this.user = (this.tokenService.getUser(data.token)); 
-        console.log(this.user);
-        (this.hasRole("ROLE_CLIENT")) ?  this.retour.navigate(["/client/catalogue"]) : this.retour.navigate(["/admin/commandes"])
-      },
-      error: (error) => { return error;}
-    })
+    return this.http.post<IToken>(environment.LOGIN_URL, body)
   }
 
   public inscription(body: IUser)

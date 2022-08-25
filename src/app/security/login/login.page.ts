@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { IUser } from 'src/app/shared/models/interfaces';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { TokenService } from 'src/app/shared/services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +12,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 })
 export class LoginPage implements OnInit {
   
-  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService) 
+  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private tokenService: TokenService, private retour:Router) 
   { 
     this.reactiveForm = this.formBuilder.group(
       {
@@ -27,6 +30,7 @@ export class LoginPage implements OnInit {
       }
     )
   }
+  public user: IUser
 
   public erroMessage = ""
 
@@ -38,10 +42,30 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  public hasRole(role: string){ return this.user.roles.includes(role as never); }
+
   public onSubmit(){  
     let form = this.reactiveForm.value;
     // console.log(form);
-    console.log( this.authenticationService.login(form)); 
+    this.authenticationService.login(form).subscribe({
+      next: (data) => 
+      {
+        this.tokenService.saveToken(data.token)  ;  
+        this.user = (this.tokenService.getUser(data.token)); 
+
+        if(this.hasRole("ROLE_CLIENT"))  
+          this.retour.navigate(["/client/catalogue"]) 
+        else 
+          if (this.hasRole("ROLE_LIVREUR"))
+            this.retour.navigate(["/livreur"])
+      },
+      error: (error) => 
+      {         
+        if(error.status == 401)
+          this.erroMessage = ("Login et/ou mot de passe incorrect(s)!")
+      }
+    })
+    ; 
   }
 
 }
