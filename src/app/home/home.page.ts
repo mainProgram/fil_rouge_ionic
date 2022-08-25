@@ -15,7 +15,8 @@ export class HomePage {
     pagination: {
       el: ".swiper-pagination",
       type: "bullets",
-      clickable: true
+      clickable: true,
+      initialSlide: 0
     }
   };
 

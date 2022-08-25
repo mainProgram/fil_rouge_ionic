@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TokenService } from '../shared/services/token.service';
 
 @Component({
   selector: 'app-livreur',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LivreurPage implements OnInit {
 
-  constructor() { }
+  constructor(private tokenService: TokenService, private retour: Router) { }
 
   ngOnInit() {
   }
 
+  public logout()
+  {
+    this.tokenService.clearToken();
+    this.retour.navigate(["/security"])
+  }
 }

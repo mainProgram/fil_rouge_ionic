@@ -49,6 +49,17 @@ export class AuthenticationService {
   }
 
   public getUser() {
-    return (this.tokenService.getUser(this.tokenService.getToken())); 
+    return this.user = (this.tokenService.getUser(this.tokenService.getToken())); 
+
+    // this.tokenService.getToken().then(data => {
+    //   let token = data
+    //   this.user = this.tokenService.getUser(token)        
+    // })
   }
+
+  // public gUser(){
+  //   this.getUser()
+  //   console.log(this.user);
+  //   return this.user
+  // }
 }

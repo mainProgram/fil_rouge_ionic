@@ -1,9 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>livreur</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="livreur-menu"></ion-menu-button>
+    </ion-buttons> 
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
 
+  <ion-menu menuId="livreur-menu" content-id="livreur">
+    <ion-content>
+        <ion-item>
+          <ion-label (click)="logout()">Déconnexion</ion-label>
+        </ion-item>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="livreur"></ion-router-outlet>
 </ion-content>

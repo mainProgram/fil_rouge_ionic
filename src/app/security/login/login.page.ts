@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { IUser } from 'src/app/shared/models/interfaces';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { TokenService } from 'src/app/shared/services/token.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,13 @@ import { TokenService } from 'src/app/shared/services/token.service';
 })
 export class LoginPage implements OnInit {
   
-  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private tokenService: TokenService, private retour:Router) 
+  constructor(
+    private formBuilder: FormBuilder, 
+    private authenticationService: AuthenticationService, 
+    private tokenService: TokenService, 
+    private retour:Router,
+    private userService: UserService,
+  ) 
   { 
     this.reactiveForm = this.formBuilder.group(
       {
@@ -37,7 +44,6 @@ export class LoginPage implements OnInit {
   public reactiveForm: FormGroup
 
   public get f(){  return this.reactiveForm.controls }
-
   
   ngOnInit() {
   }
@@ -46,23 +52,30 @@ export class LoginPage implements OnInit {
 
   public onSubmit(){  
     let form = this.reactiveForm.value;
-    // console.log(form);
+
     this.authenticationService.login(form).subscribe({
       next: (data) => 
       {
         this.tokenService.saveToken(data.token)  ;  
         this.user = (this.tokenService.getUser(data.token)); 
+        this.userService.getuserId().then(data => {
+          this.tokenService.saveId(data);
+        })
 
         if(this.hasRole("ROLE_CLIENT"))  
           this.retour.navigate(["/client/catalogue"]) 
         else 
           if (this.hasRole("ROLE_LIVREUR"))
             this.retour.navigate(["/livreur"])
+
+        this.reactiveForm.reset();
       },
       error: (error) => 
       {         
         if(error.status == 401)
+        {
           this.erroMessage = ("Login et/ou mot de passe incorrect(s)!")
+        }
       }
     })
     ; 

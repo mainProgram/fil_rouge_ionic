@@ -1,9 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>livraisons</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <ion-list>
+    <ion-item *ngFor="let liv of livraisons; let i = index">
+      <ion-label>
+        N°{{i+1}} {{ liv.date | date :'HH:mm'}}
+        <fa-icon [icon]="['fas', 'eye']"></fa-icon>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

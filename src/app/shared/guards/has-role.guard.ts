@@ -14,7 +14,8 @@ export class HasRoleGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree 
-  {
+  {    
+    // const isAuthorized =  (!! this.authenticationService.gUser()) ? this.authenticationService.gUser().roles.includes(route.data.role as never) : false;
     const isAuthorized =  (!! this.authenticationService.getUser()) ? this.authenticationService.getUser().roles.includes(route.data.role as never) : false;
     
     if(!isAuthorized)

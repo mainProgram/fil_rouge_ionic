@@ -15,6 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'client',
+    // loadChildren: () => import('./client/client.module').then( m => m.ClientPageModule)
     loadChildren: () => import('./client/client.module').then( m => m.ClientPageModule), canActivate:[HasRoleGuard], data: { role: "ROLE_VISITEUR"}, 
   },
   {

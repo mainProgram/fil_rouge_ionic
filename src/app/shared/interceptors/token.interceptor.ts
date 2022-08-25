@@ -16,7 +16,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private tokenService: TokenService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = this.tokenService.getToken()
+    const token = this.tokenService.getToken()    
 
     if(token !== null)
     {

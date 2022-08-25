@@ -6,7 +6,8 @@
       #form="ngForm" 
     >
       <div class="pt-4 pb-2 text-center">
-        <img src="../../../assets/images/logo.png" alt="" class="mb-5"> 
+        <!-- <ion-text><h5 class="ion-text-center pb-2 orange">Catalogue</h5></ion-text> -->
+        <img src="../../../assets/images/logo.png" [routerLink]="['/client']" class="mb-5"> 
         <ion-text><h5 class="ion-text-center pb-2 orange">Connexion</h5></ion-text>
         <p class="ion-text-center small">Entrez votre identifiant et votre mot de passe.</p>
         <p class="text-danger">{{erroMessage}}</p>
