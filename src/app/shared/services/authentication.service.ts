@@ -13,7 +13,6 @@ import { catchError } from 'rxjs/operators';
 export class AuthenticationService {
   public user: IUser
 
-
   constructor(private http:HttpClient, private tokenService: TokenService, private retour:Router) {   }
 
   public hasRole(role: string){ return this.user.roles.includes(role as never); }
@@ -47,5 +46,9 @@ export class AuthenticationService {
     }
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
+  }
+
+  public getUser() {
+    return (this.tokenService.getUser(this.tokenService.getToken())); 
   }
 }

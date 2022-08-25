@@ -14,6 +14,7 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { TokenInterceptorProvider } from './shared/interceptors/token.interceptor';
 import { FormsModule } from '@angular/forms';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     IonicModule.forRoot(), 
     AppRoutingModule, 
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

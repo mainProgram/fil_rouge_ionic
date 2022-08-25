@@ -32,6 +32,8 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@ionic/angular": "^6.1.9",
+    "@ionic/storage": "^3.0.6",
+    "@ionic/storage-angular": "^3.0.6",
     "bootstrap": "^5.2.0",
     "font-awesome": "^4.7.0",
     "rxjs": "~6.6.0",

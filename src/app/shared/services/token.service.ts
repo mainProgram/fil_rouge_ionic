@@ -25,13 +25,13 @@ export class TokenService {
   clearToken()
   {
     localStorage.removeItem("token");
-    this.router.navigate(["/auth/connexion"])
+    this.router.navigate(["/security"])
   }
 
   clearTokenExpired()
   {
     localStorage.removeItem("token");
-    this.router.navigate(["/auth/connexion"])
+    this.router.navigate(["/security"])
   }
 
   getToken(): string | null{  return localStorage.getItem("token") }
