@@ -1,9 +1,56 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>livraison-detail</ion-title>
+    <ion-button slot="start" [routerLink]="['/livreur/livraisons']"><fa-icon [icon]="['fas', 'arrow-left']"></fa-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <div *ngIf="livraison && livraison.commandes.length > 0">
+    <ion-text>
+      <h4 class="orange-text text-center my-3">Détails de la livraison</h4>
+    </ion-text>
+   
+    <div class="d-flex justify-content-center align-items-center mb-2" style="width: 90%; margin: auto;">
+      <ion-row style="border-bottom: 1px solid #E89448; width: 100%; color: #E89448;">
+        <ion-col col-2 class="ion-text-center">
+          <ion-label ><fa-icon [icon]="['fas', 'list-ol']"></fa-icon></ion-label>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-label ><fa-icon [icon]="['fas', 'person']"></fa-icon></ion-label>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-label ><fa-icon [icon]="['fas', 'phone']"></fa-icon></ion-label>
+        </ion-col>
+      </ion-row>    
+    </div>
+    
+    <div class="d-flex justify-content-center align-items-center mb-2" style="width: 90%; margin: auto;" *ngFor="let com of livraison.commandes">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-row class="ion-text-center" style="width:100%">
+            <ion-col col-2>
+              <ion-text>{{ com.numero}}</ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text>{{ com.client['prenom']}} {{ com.client['nom']}}</ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text>{{ com.client['telephone']}}</ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+    
+        <ion-item-options>
+          <ion-item-option color="light">
+            <fa-icon slot="bottom" name="more" [icon]="['fas', 'qrcode']"></fa-icon>Scan
+          </ion-item-option>
+          <ion-item-option color="dark">
+            <fa-icon slot="bottom" name="more" [icon]="['fas', '0']"></fa-icon>Code
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+
+  </div>
 </ion-content>

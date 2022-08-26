@@ -9,10 +9,16 @@ export class LivreurService {
 
   constructor(private http:HttpClient) { }
 
-  public getLivraisonsById(id: number)
+  public getLivraisonsLivreurById(id: number)
   {
     let LIVRAISON_LIVREUR_URL = "https://127.0.0.1:8000/api/livreurs/"+ id +"/livraisons"
     return this.http.get<any>(LIVRAISON_LIVREUR_URL).pipe( catchError(this.handleError))
+  }
+
+  getLivraisonsById(id:number)
+  {
+    let LIVRAISON__URL = "https://127.0.0.1:8000/api/livraisons/"+id
+    return this.http.get<any>(LIVRAISON__URL).pipe( catchError(this.handleError))
   }
 
   private handleError(error: HttpErrorResponse) {

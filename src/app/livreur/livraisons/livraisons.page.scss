@@ -1,0 +1,13 @@
+$orange : #E89448;
+
+.orange-text{
+    color: $orange;
+    font-weight: 900;
+}
+
+.hover{
+    &:hover{
+        color: #E89448;
+    }
+}
+

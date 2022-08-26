@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { LivraisonDetailPageRoutingModule } from './livraison-detail-routing.module';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LivraisonDetailPage } from './livraison-detail.page';
 
 @NgModule({
@@ -13,7 +14,8 @@ import { LivraisonDetailPage } from './livraison-detail.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    LivraisonDetailPageRoutingModule
+    LivraisonDetailPageRoutingModule,
+    FontAwesomeModule
   ],
   declarations: [LivraisonDetailPage]
 })

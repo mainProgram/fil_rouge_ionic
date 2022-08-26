@@ -1,0 +1,18 @@
+$orange : #E89448;
+
+.orange-text{
+    color: $orange;
+    font-weight: 900;
+}
+
+ion-button{
+    --background: #E89448;
+}
+
+ion-text{
+    font-size: 12px;
+}
+
+ion-item{
+    --border-color: #E89448;
+}

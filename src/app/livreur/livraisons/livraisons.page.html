@@ -1,10 +1,40 @@
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let liv of livraisons; let i = index">
-      <ion-label>
-        N°{{i+1}} {{ liv.date | date :'HH:mm'}}
-        <fa-icon [icon]="['fas', 'eye']"></fa-icon>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+
+  <div *ngIf="livraisons.length > 0">
+    <ion-text>
+      <h4 class="orange-text text-center my-3">Bienvenue {{ livraisons[0].livreur.prenom}} {{ livraisons[0].livreur.nom}} !</h4>
+    </ion-text>
+   
+    <div class="d-flex justify-content-center align-items-center mb-2" style="width: 90%; margin: auto;">
+      <ion-row style="border-bottom: 1px solid #E89448; width: 100%; color: #E89448;">
+        <ion-col class="ion-text-center">
+          <ion-label ><fa-icon [icon]="['fas', 'list-ol']"></fa-icon></ion-label>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-label ><fa-icon [icon]="['fas', 'motorcycle']"></fa-icon></ion-label>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-label ><fa-icon [icon]="['fas', 'circle-info']"></fa-icon></ion-label>
+        </ion-col>
+      </ion-row>    
+    </div>
+    <div class="d-flex justify-content-center align-items-center mb-2" style="width: 90%; margin: auto;" *ngFor="let liv of livraisons; let i = index">
+      <ion-row class="ion-text-center" style="border-bottom: 1px solid #E89448; width:100%">
+        <ion-col>
+          <ion-text>N°{{i+1}}</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text> {{ liv.commandes[0].zone.nom}}</ion-text>
+        </ion-col>
+        <ion-col>
+          <fa-icon [icon]="['fas', 'eye']" [routerLink] = "['/livreur/livraison-detail', liv.id]" class="hover"></fa-icon>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  <ion-text *ngIf="livraisons.length == 0">
+    <h4 class="text-danger">Pas de livraison pour le moment !</h4>
+  </ion-text>
+
 </ion-content>
