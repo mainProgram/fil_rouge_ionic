@@ -27,14 +27,15 @@
           <ion-text> {{ liv.commandes[0].zone.nom}}</ion-text>
         </ion-col>
         <ion-col>
-          <fa-icon [icon]="['fas', 'eye']" [routerLink] = "['/livreur/livraison-detail', liv.id]" class="hover"></fa-icon>
+          <fa-icon [icon]="['fas', 'eye']" (click)="showDetails(liv.id)" class="hover"></fa-icon>
+          <!-- <fa-icon [icon]="['fas', 'eye']" [routerLink] = "['/livreur/livraison-detail', liv.id]" class="hover"></fa-icon> -->
         </ion-col>
       </ion-row>
     </div>
   </div>
 
   <ion-text *ngIf="livraisons.length == 0">
-    <h4 class="text-danger">Pas de livraison pour le moment !</h4>
+    <h4 class="text-danger mt-5 ion-text-center">Pas de livraison pour le moment !</h4>
   </ion-text>
 
 </ion-content>

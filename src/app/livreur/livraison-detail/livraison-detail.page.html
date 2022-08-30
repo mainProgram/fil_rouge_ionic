@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button slot="start" [routerLink]="['/livreur/livraisons']"><fa-icon [icon]="['fas', 'arrow-left']"></fa-icon></ion-button>
+    <ion-button slot="start" (click)="goBack()"><fa-icon [icon]="['fas', 'arrow-left']"></fa-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -43,10 +43,10 @@
     
         <ion-item-options>
           <ion-item-option color="light">
-            <fa-icon slot="bottom" name="more" [icon]="['fas', 'qrcode']"></fa-icon>Scan
+            <fa-icon slot="bottom" name="more" [icon]="['fas', 'qrcode']" (click)="showCamera()"></fa-icon>Scan
           </ion-item-option>
           <ion-item-option color="dark">
-            <fa-icon slot="bottom" name="more" [icon]="['fas', '0']"></fa-icon>Code
+            <fa-icon slot="bottom" name="more" [icon]="['fas', '0']" (click)="showCode()"></fa-icon>Code
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>

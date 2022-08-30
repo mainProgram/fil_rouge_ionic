@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { BehaviorSubject } from 'rxjs';
 import { LivreurService } from 'src/app/shared/services/livreur.service';
 import { TokenService } from 'src/app/shared/services/token.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-livraisons',
@@ -12,22 +15,50 @@ export class LivraisonsPage implements OnInit {
 
   public livraisons = []
   public zone = ""
+  // mesLivraisons =  new BehaviorSubject<[]>([]);
+  // livraisons = this.mesLivraisons.asObservable();
   
-  constructor(private tokenService: TokenService, private livreurService: LivreurService, private router : Router) 
+  constructor(
+    private tokenService: TokenService, 
+    private livreurService: LivreurService, 
+    private router : Router, 
+    private navCtrl: NavController,
+    private userService: UserService
+  ) 
   { 
-    let date = new Date().toISOString().substring(0,10);
-    let idUserConnecte = +this.tokenService.getId()
-    this.livreurService.getLivraisonsLivreurById(idUserConnecte).subscribe({
-      next: data => {  
-        this.livraisons = data.filter(el => el.date.split("T")[0] == date); 
-
-        console.log(this.zone);
-      }
-    })
     
   }
 
   ngOnInit() {
+    let date = new Date().toISOString().substring(0,10);
+    let idUserConnecte = +this.tokenService.getId()
+    
+    console.log(idUserConnecte);
+    
+    this.livreurService.getLivraisonsLivreurById(idUserConnecte).subscribe({
+      next: data => {  
+        this.livraisons = data.filter(el => el.date.split("T")[0] == date); 
+        console.log(this.livraisons);
+        // this.mesLivraisons.next(data.filter(el => el.date.split("T")[0] == date)); 
+      }
+    })
+
+    this.userService.getuserId().then(data => {
+       this.livreurService.getLivraisonsLivreurById(idUserConnecte).subscribe({
+        next: data => {  
+          this.livraisons = data.filter(el => el.date.split("T")[0] == date); 
+          console.log(this.livraisons);
+          // this.mesLivraisons.next(data.filter(el => el.date.split("T")[0] == date)); 
+        }
+      })  
+    })
+  }
+
+  public showDetails(id: number){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {  id: id  }
+    };
+    this.navCtrl.navigateForward([`livreur/livraison-detail/${id}`], navigationExtras)
   }
 
 

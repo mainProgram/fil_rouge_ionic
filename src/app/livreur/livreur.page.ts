@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { TokenService } from '../shared/services/token.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { TokenService } from '../shared/services/token.service';
 })
 export class LivreurPage implements OnInit {
 
-  constructor(private tokenService: TokenService, private retour: Router) { }
+  constructor(private tokenService: TokenService, private retour: Router, private navCtrl: NavController) { }
 
   ngOnInit() {
   }
@@ -17,6 +18,7 @@ export class LivreurPage implements OnInit {
   public logout()
   {
     this.tokenService.clearToken();
-    this.retour.navigate(["/security"])
+    // this.retour.navigate(["/security"])
+    this.navCtrl.navigateForward("/security")
   }
 }

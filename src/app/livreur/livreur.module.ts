@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { LivreurPageRoutingModule } from './livreur-routing.module';
 
 import { LivreurPage } from './livreur.page';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LivreurPageRoutingModule
+    LivreurPageRoutingModule,
+    FontAwesomeModule
   ],
   declarations: [LivreurPage]
 })

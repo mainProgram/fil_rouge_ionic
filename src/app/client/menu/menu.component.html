@@ -1,33 +1,19 @@
-<ion-menu menuId="client-menu" content-id="client">
+<ion-menu menuId="client-menu" content-id="client" #menu>
   <ion-content>
     <ion-list>
+      <ion-item (click)="selectCategory('2')">  <ion-label><fa-icon [icon]="['fas', 'utensils']"></fa-icon> Menus</ion-label>  </ion-item>
+      <ion-item (click)="selectCategory('1')">  <ion-label><fa-icon [icon]="['fas', 'burger']"></fa-icon> Burgers</ion-label>  </ion-item>
       <ion-item>
-        <ion-label>Nos Menus</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Nos Burgers</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Nos Compléments
+        <ion-label><fa-icon [icon]="['fas', 'plus']"></fa-icon> Compléments
           <ion-list lines="none">
-            <ion-item>
-              <ion-label>- Frites</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>- Boissons</ion-label>
-            </ion-item>
+            <ion-item (click)="selectCategory('3')"><ion-label>- Frites</ion-label></ion-item>
+            <ion-item (click)="selectCategory('4')"> <ion-label>- Boissons</ion-label> </ion-item>
           </ion-list>
         </ion-label>
       </ion-item>
-      <ion-item>
-        <ion-label>Mes Commandes</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Mon Compte</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label (click)="logout()">Déconnexion</ion-label>
-      </ion-item>
+      <ion-item (click)="goSomewhere('client/commandes')">  <ion-label><fa-icon [icon]="['fas', 'cart-shopping']"></fa-icon> Commandes</ion-label>  </ion-item>
+      <!-- <ion-item>  <ion-label><fa-icon [icon]="['fas', 'user']"></fa-icon> Compte</ion-label>  </ion-item> -->
+      <ion-item>  <ion-label (click)="logout()"><fa-icon [icon]="['fas', 'arrow-right-from-bracket']"></fa-icon> Déconnexion</ion-label>  </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>

@@ -8,13 +8,15 @@ import { ClientPageRoutingModule } from './client-routing.module';
 
 import { ClientPage } from './client.page';
 import { MenuComponent } from './menu/menu.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ClientPageRoutingModule
+    ClientPageRoutingModule,
+    FontAwesomeModule
   ],
   declarations: [
     ClientPage,

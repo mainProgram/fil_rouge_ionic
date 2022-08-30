@@ -31,6 +31,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'my-modal',
+    loadChildren: () => import('./shared/my-modal/my-modal.module').then( m => m.MyModalPageModule)
+  },
+  {
+    path: 'my-popover',
+    loadChildren: () => import('./shared/my-popover/my-popover.module').then( m => m.MyPopoverPageModule)
+  },
 ];
 
 @NgModule({

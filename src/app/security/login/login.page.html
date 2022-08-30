@@ -7,20 +7,20 @@
     >
       <div class="pt-4 pb-2 text-center">
         <!-- <ion-text><h5 class="ion-text-center pb-2 orange">Catalogue</h5></ion-text> -->
-        <img src="../../../assets/images/logo.png" [routerLink]="['/client']" class="mb-5"> 
+        <img src="../../../assets/images/logo.png" class="mb-5"> 
         <ion-text><h5 class="ion-text-center pb-2 orange">Connexion</h5></ion-text>
         <p class="ion-text-center small">Entrez votre identifiant et votre mot de passe.</p>
         <p class="text-danger">{{erroMessage}}</p>
       </div>
 
-      <ion-item lines="full">
+      <ion-item>
         <ion-label position="floating">Adresse email</ion-label>
         <ion-input type="email" required formControlName="email"></ion-input>
       </ion-item>
       <span class="form_error" *ngIf="f['email'].getError('required')&& form.submitted">L'email est requis !</span>
       <span class="form_error" *ngIf="f['email'].getError('email')&& form.submitted">L'email est invalide !</span>
 
-      <ion-item lines="full">
+      <ion-item>
         <ion-label position="floating">Mot de passe</ion-label>
         <ion-input type="password" required formControlName="password"></ion-input>
       </ion-item>
@@ -29,8 +29,8 @@
       <ion-row class="mt-4">
         <ion-col>
           <ion-button type="submit" expand="block" [disabled]="reactiveForm.invalid && form.submitted">Sign In</ion-button>
-          <p class="small ion-text-center mt-4"><a [routerLink]="['/forgot-password']">Mot de passe oublié ?</a></p>
-          <p class="small ion-text-center"><a [routerLink]="['/registration']">Créez un compte.</a></p>
+          <p class="small ion-text-center mt-4"><a (click)="goSomewhere('security/forgot-password')">Mot de passe oublié ?</a></p>
+          <p class="small ion-text-center"><a (click)="goSomewhere('security/registration')">Créez un compte.</a></p>
         </ion-col>
       </ion-row>
     </form>

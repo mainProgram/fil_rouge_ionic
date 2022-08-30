@@ -36,14 +36,12 @@ export class HomePage {
   {
     this.reactiveForm = this.formBuilder.group(
       {
-        email: new FormControl('', Validators.compose(
-          [
+        email: new FormControl('', Validators.compose([
             Validators.required,
             Validators.email
-          ]
-        ),),
-        password: new FormControl('', Validators.compose(
-          [
+          ]),
+        ),
+        password: new FormControl('', Validators.compose([
             Validators.required, 
           ]
         )),

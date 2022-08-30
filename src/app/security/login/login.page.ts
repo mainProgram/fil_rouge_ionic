@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { IUser } from 'src/app/shared/models/interfaces';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { TokenService } from 'src/app/shared/services/token.service';
@@ -19,6 +20,7 @@ export class LoginPage implements OnInit {
     private tokenService: TokenService, 
     private retour:Router,
     private userService: UserService,
+    private navCtrl: NavController
   ) 
   { 
     this.reactiveForm = this.formBuilder.group(
@@ -63,10 +65,12 @@ export class LoginPage implements OnInit {
         })
 
         if(this.hasRole("ROLE_CLIENT"))  
-          this.retour.navigate(["/client/catalogue"]) 
+          this.navCtrl.navigateForward("/client/catalogue")
+          // this.retour.navigate(["/client/catalogue"]) 
         else 
           if (this.hasRole("ROLE_LIVREUR"))
-            this.retour.navigate(["/livreur"])
+            this.navCtrl.navigateForward("/livreur/livraisons")
+            // this.retour.navigate(["/livreur/livraisons"])
 
         this.reactiveForm.reset();
       },
@@ -79,6 +83,10 @@ export class LoginPage implements OnInit {
       }
     })
     ; 
+  }
+
+  public goSomewhere(where){
+    this.navCtrl.navigateForward(where);
   }
 
 }
