@@ -60,6 +60,8 @@ export class LoginPage implements OnInit {
       {
         this.tokenService.saveToken(data.token)  ;  
         this.user = (this.tokenService.getUser(data.token)); 
+        console.log(this.user);
+        
         this.userService.getuserId().then(data => {
           this.tokenService.saveId(data);
         })

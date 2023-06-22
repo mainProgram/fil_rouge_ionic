@@ -1,4 +1,16 @@
 ion-item:hover {
-    --color: #E89448;
+    --color: #EAB708;
     cursor: pointer;
+}
+
+ion-menu-button, fa-icon, ion-toolbar {
+    --background: #EAB708;
+    --color : white;
+}
+
+ion-label{
+    --color: #EAB708; 
+    ion-text{
+        --color: #EAB708; 
+    }
 }

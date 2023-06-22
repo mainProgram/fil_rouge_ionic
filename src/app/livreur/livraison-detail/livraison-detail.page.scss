@@ -1,4 +1,4 @@
-$orange : #E89448;
+$orange : #EAB708;
 
 .orange-text{
     color: $orange;
@@ -6,13 +6,18 @@ $orange : #E89448;
 }
 
 ion-button{
-    --background: #E89448;
+    --background: #EAB708;
 }
 
-ion-text{
+ion-text, td{
     font-size: 12px;
 }
 
 ion-item{
-    --border-color: #E89448;
+    --border-color: #EAB708;
+}
+
+ion-menu-button, fa-icon, ion-toolbar {
+    --background: #EAB708;
+    --color : white;
 }

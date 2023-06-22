@@ -1,4 +1,4 @@
-$orange : #E89448;
+$orange : #EAB708;
 
 .fullheight {
     height: 100%;
@@ -11,11 +11,13 @@ justify-content: center;
 }
 
 ion-button{
-    --background: #E89448;
-    --border:none;
+    --background: #EAB708;
+    --border: 1px solid#eab704;
+    --color: white;
     &:hover{
-        --background: black;
-        --color: white;
+        --background: #fff;
+        --color: #EAB708;
+        ---ripple-color: #EAB708;
     }   
 }
 
@@ -43,6 +45,6 @@ form{
     }
 
     // has-focus {
-    //     border: 2px solid #E89448 !important;
+    //     border: 2px solid #EAB708 !important;
     // }
 }

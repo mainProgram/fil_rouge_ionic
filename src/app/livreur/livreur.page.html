@@ -2,18 +2,24 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button menu="livreur-menu"></ion-menu-button>
-    </ion-buttons> 
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content>
 
+<ion-content>
   <ion-menu menuId="livreur-menu" content-id="livreur">
     <ion-content>
+      <ion-item>
         <ion-item>
-          <ion-item>  <ion-label (click)="logout()"><fa-icon [icon]="['fas', 'arrow-right-from-bracket']"></fa-icon> Déconnexion</ion-label>  </ion-item>
+          <ion-label (click)="logout()">
+            <i class="fa-solid fa-arrow-right-from-bracket mx-2"></i>            
+            <ion-text>Déconnexion</ion-text>
+          </ion-label>
         </ion-item>
+      </ion-item>
     </ion-content>
   </ion-menu>
 
   <ion-router-outlet id="livreur"></ion-router-outlet>
 </ion-content>
+

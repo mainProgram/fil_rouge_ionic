@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { firstValueFrom, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { TokenService } from './token.service';
@@ -12,9 +12,18 @@ export class UserService {
 
   constructor(private http:HttpClient, private tokenService: TokenService) { }
 
-  public async getAllUsers():Promise<any>  {  return await firstValueFrom(this.http.get<any>(environment.USERS_URL).pipe( catchError(this.handleError)));}
+  // public async getAllUsers():Promise<any>  {  return await firstValueFrom(this.http.get<any>(environment.USERS_URL).pipe( catchError(this.handleError)));}
   // public getAllUsers(): Observable<IUser[]> {  return this.http.get<IUser[]>(environment.USERS_URL).pipe( catchError(this.handleError))}
-
+public async getAllUsers(){
+  try {
+    const response = await this.http.get<any>(environment.USERS_URL).toPromise();
+    return response;
+  } catch (error) {
+    // Handle error
+    return throwError(error);
+  }
+}
+  
   public getUsername() {  return this.tokenService.getUser(this.tokenService.getToken()).username  }
 
   private handleError(error: HttpErrorResponse) {

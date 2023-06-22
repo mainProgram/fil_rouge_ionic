@@ -12,6 +12,7 @@ import { LivreurService } from 'src/app/shared/services/livreur.service';
 export class LivraisonDetailPage implements OnInit {
 
   public livraison : any
+  public isLoaded : boolean
 
   constructor(  
     private retour:Router, 
@@ -29,7 +30,15 @@ export class LivraisonDetailPage implements OnInit {
         console.log(id);
  
         this.livreurService.getLivraisonsById(id).subscribe({
-          next: data => { this.livraison = data; console.log(data)},
+          next: data => { 
+            this.livraison = data; 
+            console.log(data)
+            console.log(data.commandes[0].commandeBurgers)
+            
+            setTimeout(() => {
+              this.isLoaded = true
+            }, 2000);
+          },
           error: (error) => {  this.navCtrl.navigateForward("/livreur")  }
         })
       }
@@ -39,7 +48,7 @@ export class LivraisonDetailPage implements OnInit {
 
   public goBack()
   {
-    this.navCtrl.pop();
+    this.navCtrl.navigateForward("/livreur/livraisons")
   }
 
   showCamera(){

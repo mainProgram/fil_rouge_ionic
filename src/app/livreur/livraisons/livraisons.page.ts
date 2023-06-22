@@ -15,6 +15,7 @@ export class LivraisonsPage implements OnInit {
 
   public livraisons = []
   public zone = ""
+  public isLoaded : boolean
   // mesLivraisons =  new BehaviorSubject<[]>([]);
   // livraisons = this.mesLivraisons.asObservable();
   
@@ -39,6 +40,9 @@ export class LivraisonsPage implements OnInit {
       next: data => {  
         this.livraisons = data.filter(el => el.date.split("T")[0] == date); 
         console.log(this.livraisons);
+        setTimeout(() => {
+          this.isLoaded = true
+        }, 2000);
         // this.mesLivraisons.next(data.filter(el => el.date.split("T")[0] == date)); 
       }
     })
@@ -48,6 +52,9 @@ export class LivraisonsPage implements OnInit {
         next: data => {  
           this.livraisons = data.filter(el => el.date.split("T")[0] == date); 
           console.log(this.livraisons);
+          setTimeout(() => {
+            this.isLoaded = true
+          }, 2000);
           // this.mesLivraisons.next(data.filter(el => el.date.split("T")[0] == date)); 
         }
       })  

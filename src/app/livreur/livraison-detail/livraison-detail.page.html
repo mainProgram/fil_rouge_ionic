@@ -5,19 +5,18 @@
 </ion-header>
 
 <ion-content>
-
-  <div *ngIf="livraison && livraison.commandes.length > 0">
+  <div *ngIf="livraison && livraison.commandes.length > 0 && isLoaded">
     <ion-text>
       <h4 class="orange-text text-center my-3">Détails de la livraison</h4>
     </ion-text>
    
     <div class="d-flex justify-content-center align-items-center mb-2" style="width: 90%; margin: auto;">
-      <ion-row style="border-bottom: 1px solid #E89448; width: 100%; color: #E89448;">
-        <ion-col col-2 class="ion-text-center">
-          <ion-label ><fa-icon [icon]="['fas', 'list-ol']"></fa-icon></ion-label>
+      <ion-row style="border-bottom: 1px solid #EAB708; width: 100%; color: #EAB708;">
+        <ion-col  class="ion-text-center">
+          <ion-label ><fa-icon [icon]="['fas', 'user']"></fa-icon></ion-label>
         </ion-col>
         <ion-col class="ion-text-center">
-          <ion-label ><fa-icon [icon]="['fas', 'person']"></fa-icon></ion-label>
+          <ion-label ><fa-icon [icon]="['fas', 'dollar']"></fa-icon></ion-label>
         </ion-col>
         <ion-col class="ion-text-center">
           <ion-label ><fa-icon [icon]="['fas', 'phone']"></fa-icon></ion-label>
@@ -25,7 +24,7 @@
       </ion-row>    
     </div>
     
-    <div class="d-flex justify-content-center align-items-center mb-2" style="width: 90%; margin: auto;" *ngFor="let com of livraison.commandes">
+    <!-- <div class="d-flex justify-content-center align-items-center mb-2" style="width: 90%; margin: auto;" *ngFor="let com of livraison.commandes">
       <ion-item-sliding>
         <ion-item>
           <ion-row class="ion-text-center" style="width:100%">
@@ -33,7 +32,7 @@
               <ion-text>{{ com.numero}}</ion-text>
             </ion-col>
             <ion-col>
-              <ion-text>{{ com.client['prenom']}} {{ com.client['nom']}}</ion-text>
+              <ion-text>{{ com.prix }} FCFA</ion-text>
             </ion-col>
             <ion-col>
               <ion-text>{{ com.client['telephone']}}</ion-text>
@@ -50,7 +49,69 @@
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-    </div>
+    </div> -->
 
+    <ion-accordion-group >
+      <ion-accordion value="{{com.id}}" *ngFor="let com of livraison.commandes"  style="border-bottom: 1px solid #EAB708;">
+        <ion-item slot="header">
+          <ion-label>
+            <ion-row class="ion-text-center" style="width:100%">
+              <ion-col col-2>
+                <ion-text>{{ com.client.prenom}}  {{com.client.nom}}</ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text>{{ com.prix }} FCFA</ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text>{{ com.client['telephone']}}</ion-text>
+              </ion-col>
+            </ion-row> 
+          </ion-label>
+        </ion-item>
+        <div class="ion-padding w-75" slot="content" style="margin: auto; background-color: #EAB708; border-radius: 5px;">
+          <table class="table table-hover">
+            <tbody>
+                <tr>
+                  <td>{{com.numero}}</td>
+                  <td>{{com.zone.nom}}</td>
+                  <td>{{com.zone.prix}} FCFA</td>
+                </tr>
+                <ng-container *ngIf="com.commandeMenus && com.commandeMenus.length > 0">
+                    <tr *ngFor="let menu of com.commandeMenus">
+                        <td>{{ menu.quantite}}</td>
+                        <td>{{ menu.menu.nom}}</td>
+                        <td>{{ menu.prix * menu.quantite}} FCFA</td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="com.commandeBurgers && com.commandeBurgers.length > 0">
+                    <tr *ngFor="let burger of com.commandeBurgers">
+                      <td>{{ burger.quantite }}</td>
+                      <td>{{ burger.burger.nom }}</td>
+                      <td>{{ burger.prix * burger.quantite }} FCFA</td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="com.commandeFrites && com.commandeFrites.length > 0">
+                    <tr *ngFor="let frite of com.commandeFrites">
+                      <td>{{ frite.quantite}}</td>
+                        <td>{{ frite.frite.nom}}</td>
+                        <td>{{ frite.prix * frite.quantite}} FCFA</td>
+                    </tr>
+                </ng-container>
+                <ng-container *ngIf="com.commandeTailleBoissons && com.commandeTailleBoissons.length > 0">
+                    <tr *ngFor="let tailleBoisson of com.commandeTailleBoissons">
+                      <td>{{ tailleBoisson.quantite}}</td>
+                        <td>{{ tailleBoisson.tailleBoisson.boisson.nom}} {{ tailleBoisson.tailleBoisson.taille.nom}}</td>
+                        <td>{{ tailleBoisson.prix * tailleBoisson.quantite}} FCFA</td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
+
+  <div class="spinner d-flex justify-content-center align-items-center" *ngIf="!isLoaded">
+    <img src="../../../assets/spinner.gif" alt="spinner">
   </div>
 </ion-content>
